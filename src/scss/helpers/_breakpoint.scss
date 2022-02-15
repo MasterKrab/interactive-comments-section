@@ -1,0 +1,9 @@
+$breakpoints: (
+  'desktop': '768px',
+);
+
+@mixin breakpoint($query, $breakpoint) {
+  @media screen and ($query: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
