@@ -1,0 +1,29 @@
+@use '../variables/colors' as c;
+@use '../helpers/breakpoint' as b;
+
+.comment-form {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: center;
+  gap: 1rem;
+  background-color: c.$white;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+
+  @include b.breakpoint('min-width', 'desktop') {
+    grid-template-columns: 2rem 1fr min-content;
+    align-items: flex-start;
+
+    &__image {
+      margin-top: 0.25rem;
+    }
+  }
+
+  @include b.breakpoint('max-width', 'desktop') {
+    &__picture {
+      grid-row: 2 / 3;
+    }
+  }
+}

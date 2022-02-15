@@ -1,0 +1,18 @@
+.modal {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+
+  &--active {
+    opacity: 1;
+  }
+}

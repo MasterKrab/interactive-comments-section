@@ -1,0 +1,38 @@
+@use '../variables/colors' as c;
+@use '../helpers/reset-list';
+@use '../helpers/breakpoint' as b;
+@use 'sass:math';
+
+$padding-replies-mobile: 1.063rem;
+$padding-replies-desktop: 5.438rem;
+
+.comments {
+  @extend %reset-list;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  &--replies {
+    position: relative;
+    padding-left: $padding-replies-mobile;
+    margin-top: 1rem;
+
+    @include b.breakpoint('min-width', 'desktop') {
+      padding-left: $padding-replies-desktop;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background-color: c.$light-gray;
+
+      @include b.breakpoint('min-width', 'desktop') {
+        margin-left: math.div($padding-replies-desktop, 2);
+      }
+    }
+  }
+}

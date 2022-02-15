@@ -1,0 +1,153 @@
+@use '../variables/colors' as c;
+@use '../helpers/breakpoint' as b;
+@use '../helpers/button-base';
+@use '../helpers/icon-left' as i;
+
+.comment {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: c.$white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+
+  @include b.breakpoint('min-width', 'desktop') {
+    grid-template-columns: 5.625rem 1fr;
+    padding: 1.5rem 1.5rem 1.5rem 0;
+    padding-left: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  &__image,
+  &__name {
+    margin-right: 1rem;
+  }
+
+  &__image {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    color: c.$dark-blue;
+  }
+
+  &__you {
+    color: c.$white;
+    background-color: c.$moderate-blue;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.25rem 0.2rem;
+    font-size: 0.85rem;
+    font-weight: normal;
+    border-radius: 0.15rem;
+  }
+
+  // Markdown content
+  &__content {
+    overflow: hidden;
+
+    & > p {
+      display: inline;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: c.$moderate-blue;
+    }
+
+    blockquote {
+      position: relative;
+      background-color: c.$light-gray;
+      margin: 0;
+      padding: 1rem 1rem 1rem 1.25rem;
+      border-radius: 0.25rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        background-color: c.$grayish-blue;
+        width: 2px;
+        height: 100%;
+        transform: translateY(-50%);
+      }
+
+      & > p {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__reply-to,
+  &__button {
+    font-weight: bold;
+    color: c.$moderate-blue;
+  }
+
+  &__buttons {
+    display: flex;
+    position: absolute;
+    right: 1rem;
+
+    @include b.breakpoint('max-width', 'desktop') {
+      bottom: 1rem;
+    }
+
+    @include b.breakpoint('min-width', 'desktop') {
+      top: 2rem;
+      right: 1.5rem;
+    }
+  }
+
+  &__button {
+    @extend %button-base;
+
+    &:last-child {
+      margin-left: 1rem;
+    }
+
+    &--reply {
+      @include i.icon-left('reply');
+    }
+
+    &--edit {
+      @include i.icon-left('edit');
+    }
+
+    &--delete {
+      @include i.icon-left('delete');
+      color: c.$soft-red;
+
+      &:focus-visible {
+        outline-color: c.$soft-red;
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+}

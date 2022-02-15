@@ -1,0 +1,9 @@
+@use '../helpers/reset-button';
+@use '../helpers/opacity-hover';
+@use '../helpers/focus-outline';
+
+%button-base {
+  @extend %reset-button;
+  @extend %opacity-hover;
+  @extend %focus-outline;
+}

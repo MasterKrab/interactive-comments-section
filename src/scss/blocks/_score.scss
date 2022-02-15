@@ -1,0 +1,63 @@
+@use '../variables/colors' as c;
+@use '../helpers/breakpoint' as b;
+@use '../helpers/reset-button';
+@use '../helpers/focus-outline';
+@use '../helpers/hover' as h;
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: c.$very-light-gray;
+  padding: 0.3rem 0.2rem;
+  font-size: 0.9rem;
+  width: min-content;
+  font-weight: bold;
+  color: c.$moderate-blue;
+  border-radius: 0.5rem;
+
+  @include b.breakpoint('min-width', 'desktop') {
+    flex-direction: column;
+    align-self: start;
+    justify-self: center;
+    grid-row: 1 / 3;
+    grid-column: 0 / 1;
+    padding: 0.35rem;
+    font-size: 1rem;
+  }
+
+  &__button {
+    @extend %reset-button;
+    @extend %focus-outline;
+    display: grid;
+    place-items: center;
+    padding: 0.5rem 0.9rem;
+
+    &:focus-visible {
+      outline-offset: -3px;
+    }
+
+    @include b.breakpoint('min-width', 'desktop') {
+      padding: 0.8rem 0.5rem;
+    }
+
+    &--active .score__icon {
+      fill: c.$moderate-blue;
+    }
+
+    @include h.hover() {
+      & .score__icon {
+        fill: c.$moderate-blue;
+      }
+    }
+  }
+
+  &__icon {
+    @include h.hover(fill 0.25s);
+  }
+
+  &__counter {
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+  }
+}

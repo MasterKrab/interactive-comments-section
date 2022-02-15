@@ -1,0 +1,13 @@
+@use '../variables/colors' as c;
+@use '../helpers/scrollbar' as s;
+
+@use '../variables/fonts' as f;
+
+.highlight {
+  padding: 1rem;
+  font-size: 0.9rem;
+  font-family: f.$font-code;
+  border-radius: 0.4rem;
+  overflow-x: scroll;
+  @include s.scrollbar(c.$white);
+}

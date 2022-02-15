@@ -1,0 +1,25 @@
+@use '../variables/colors' as c;
+@use '../helpers/button-base';
+@use '../helpers/breakpoint' as b;
+
+.submit-button {
+  @extend %button-base;
+  background-color: c.$moderate-blue;
+  padding: 1rem;
+  margin-left: auto;
+  width: 6.25rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  color: c.$white;
+
+  &--new-comment {
+    @include b.breakpoint('max-width', 'desktop') {
+      grid-row: 2 / 3;
+      grid-column: 2 / 3;
+    }
+  }
+
+  &--edit-comment {
+    margin-top: 1rem;
+  }
+}

@@ -86,3 +86,8 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# build files
+public/bundle.css
+public/bundle.js
+public/bundle.js.map

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["esNext", "dom"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "outDir": "./public/bundle.js",
+    "baseUrl": "./src/ts"
+  },
+  "include": ["src/ts/**/*"]
+}

@@ -1,0 +1,38 @@
+@use '../variables/fonts' as f;
+@use '../variables/colors' as c;
+@use '../helpers/scrollbar' as s;
+@use '../helpers/breakpoint' as b;
+
+html {
+  background-color: c.$very-light-gray;
+  color: c.$grayish-blue;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: min(3.5vw, 1rem);
+  min-height: 100vh;
+  font-family: f.$font-primary;
+  @include s.scrollbar(c.$moderate-blue);
+
+  @include b.breakpoint('min-width', 'desktop') {
+    max-width: 736px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}

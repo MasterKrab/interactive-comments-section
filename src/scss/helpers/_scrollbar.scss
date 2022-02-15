@@ -1,0 +1,4 @@
+@mixin scrollbar($color: currentColor) {
+  scrollbar-color: $color transparent;
+  scrollbar-width: thin;
+}

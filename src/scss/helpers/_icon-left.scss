@@ -1,0 +1,9 @@
+@mixin icon-left($name) {
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: url('/assets/images/icon-#{$name}.svg');
+    margin-right: 0.5rem;
+  }
+}

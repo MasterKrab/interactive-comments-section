@@ -1,0 +1,5 @@
+@use '../helpers/visually-hidden' as v;
+
+.text-box-label {
+  @include v.visually-hidden;
+}

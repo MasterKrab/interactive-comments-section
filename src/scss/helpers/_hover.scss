@@ -1,0 +1,9 @@
+@mixin hover($transition: null) {
+  transition: $transition;
+
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}

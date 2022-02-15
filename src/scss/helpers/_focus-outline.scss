@@ -1,0 +1,10 @@
+@use '../variables/colors' as c;
+
+%focus-outline {
+  outline: 3px dashed transparent;
+  outline-offset: 5px;
+
+  &:focus-visible {
+    outline-color: c.$moderate-blue;
+  }
+}
