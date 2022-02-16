@@ -30,6 +30,7 @@ const createTextBox = (
   const image = document.createElement('img')
   image.classList.add('text-box__image')
   image.src = '/assets/images/icon-markdown.svg'
+  image.alt = 'Markdown'
   link.prepend(image)
 
   container.appendChild(containerTextBox)
