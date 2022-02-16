@@ -17,6 +17,43 @@ const extensions = ['.js', '.ts']
 
 const isDev = process.env.NODE_ENV === 'development'
 
+const plugins = [
+  nodeResolve({ extensions, browser: true, preferBuiltins: false }),
+  commonjs(),
+  babel({
+    extensions,
+    include: ['src/**/*'],
+    babelHelpers: 'runtime',
+    presets: ['@babel/typescript', '@babel/preset-env'],
+    plugins: ['@babel/plugin-transform-runtime'],
+  }),
+  postcss({
+    preprocessor: (_, id) => async () => ({
+      code: sass.compile(id).css.toString(),
+    }),
+    plugins: [
+      autoprefixer(),
+      cssVariables({ preserve: true }),
+      postcssFocusVisible,
+      scrollbar,
+    ],
+    extract: true,
+    minimize: true,
+    extensions: ['.scss', '.css'],
+  }),
+  url(),
+  json(),
+  terser()
+]
+
+if(isDev){
+  plugins.push(
+    serve({ contentBase: './public', port: 3000 }),
+    livereload('public')
+  )
+}
+
+
 export default [
   {
     input: 'src/ts/index.ts',
@@ -25,35 +62,6 @@ export default [
       sourcemap: true,
       inlineDynamicImports: true,
     },
-    plugins: [
-      nodeResolve({ extensions, browser: true, preferBuiltins: false }),
-      commonjs(),
-      babel({
-        extensions,
-        include: ['src/**/*'],
-        babelHelpers: 'runtime',
-        presets: ['@babel/typescript', '@babel/preset-env'],
-        plugins: ['@babel/plugin-transform-runtime'],
-      }),
-      postcss({
-        preprocessor: (_, id) => async () => ({
-          code: sass.compile(id).css.toString(),
-        }),
-        plugins: [
-          autoprefixer(),
-          cssVariables({ preserve: true }),
-          postcssFocusVisible,
-          scrollbar,
-        ],
-        extract: true,
-        minimize: true,
-        extensions: ['.scss', '.css'],
-      }),
-      url(),
-      json(),
-      terser(),
-      isDev && serve({ contentBase: './public', port: 3000 }),
-      isDev && livereload('public'),
-    ],
+    plugins
   },
 ]
