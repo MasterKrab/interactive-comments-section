@@ -70,6 +70,7 @@ const createComment = (
 
   const buttons = document.createElement('section')
   buttons.classList.add('comment__buttons')
+  buttons.setAttribute('aria-label', 'Actions')
   section.appendChild(buttons)
 
   if (currentUser.username === username) {

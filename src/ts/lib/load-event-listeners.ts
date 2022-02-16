@@ -15,7 +15,8 @@ import waitEvent from '../utils/wait-events'
 const loadEventListeners = (
   currentUser: User,
   comments: Comment[],
-  commentsElement: HTMLElement
+  commentsElement: HTMLElement,
+  container: HTMLElement
 ) => {
   const reloadComments = () => {
     saveStorage('comments', comments)
@@ -289,11 +290,9 @@ const loadEventListeners = (
     button.click()
   }
 
-  const { body } = document
-
-  body.addEventListener('click', handleClick)
-  body.addEventListener('submit', handleSubmit)
-  body.addEventListener('keydown', handleKeydown)
+  container.addEventListener('click', handleClick)
+  container.addEventListener('submit', handleSubmit)
+  container.addEventListener('keydown', handleKeydown)
 }
 
 export default loadEventListeners

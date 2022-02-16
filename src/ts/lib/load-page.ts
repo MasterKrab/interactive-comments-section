@@ -8,20 +8,24 @@ import loadEventListeners from './load-event-listeners'
 const loadPage = () => {
   const { body } = document
 
+  const main = document.createElement('main')
+
   const { currentUser, comments: defaultComments } = data as CommentsData
 
   const comments = getStorage('comments') || defaultComments
 
   const commentsElement = document.createElement('ul')
   commentsElement.classList.add('comments')
-  body.appendChild(commentsElement)
+  main.appendChild(commentsElement)
 
   const form = createCommentForm(currentUser)
-  body.appendChild(form)
+  main.appendChild(form)
+
+  body.appendChild(main)
 
   loadComments(commentsElement, comments, currentUser)
 
-  loadEventListeners(currentUser, comments, commentsElement)
+  loadEventListeners(currentUser, comments, commentsElement, main)
 }
 
 export default loadPage
