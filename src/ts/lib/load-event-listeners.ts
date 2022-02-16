@@ -279,10 +279,21 @@ const loadEventListeners = (
     loadComments(commentsElement, comments, currentUser)
   }
 
+  const handleKeydown = (e: KeyboardEvent) => {
+    if (e.key !== 'Enter' || e.shiftKey) return
+
+    const target = e.target as HTMLInputElement
+    const form = target.closest('form')!
+    const button = form.lastElementChild as HTMLButtonElement
+
+    button.click()
+  }
+
   const { body } = document
 
   body.addEventListener('click', handleClick)
   body.addEventListener('submit', handleSubmit)
+  body.addEventListener('keydown', handleKeydown)
 }
 
 export default loadEventListeners
