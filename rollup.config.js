@@ -15,6 +15,8 @@ import livereload from 'rollup-plugin-livereload'
 
 const extensions = ['.js', '.ts']
 
+const isDev = process.env.NODE_ENV === 'development'
+
 export default [
   {
     input: 'src/ts/index.ts',
@@ -50,8 +52,8 @@ export default [
       url(),
       json(),
       terser(),
-      serve({ contentBase: './public', port: 3000 }),
-      livereload('public'),
+      isDev && serve({ contentBase: './public', port: 3000 }),
+      isDev && livereload('public'),
     ],
   },
 ]
